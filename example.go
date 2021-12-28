@@ -1,9 +1,17 @@
 package main
 
-import "github.com/mayur2011/go-httpclient/gohttp"
+import (
+	"fmt"
 
-func basicExample() {
+	"github.com/mayur2011/go-httpclient/gohttp"
+)
+
+func main() {
 
 	client := gohttp.New()
-	client.Get()
+	response, err := client.Get("https://api.github.com", nil)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(response.StatusCode)
 }
