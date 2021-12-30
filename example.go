@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 
 	"github.com/mayur2011/go-httpclient/gohttp"
 )
@@ -14,4 +15,6 @@ func main() {
 		panic(err)
 	}
 	fmt.Println(response.StatusCode)
+	bytes, _ := ioutil.ReadAll(response.Body)
+	fmt.Println(string(bytes))
 }
