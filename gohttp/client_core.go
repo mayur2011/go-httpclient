@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func (C *httpClient) do(method string, url string, headers http.Header, req interface{}) (*http.Response, error) {
+func (c *httpClient) do(method string, url string, headers http.Header, req interface{}) (*http.Response, error) {
 	client := http.Client{}
 
 	request, err := http.NewRequest(method, url, nil)
@@ -13,6 +13,14 @@ func (C *httpClient) do(method string, url string, headers http.Header, req inte
 		return nil, errors.New("unable to create a new request")
 	}
 
+	//Add common headers to the request
+	for header, value := range c.Headers {
+		if len(value) > 0 {
+			request.Header.Set(header, value[0])
+		}
+	}
+
+	//Add custom headers to the request (this will overwrite common header values from client header values)
 	for header, value := range headers {
 		if len(value) > 0 {
 			request.Header.Set(header, value[0])

@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	httpclient = gohttp.New()
+	githubHttpClient = gohttp.New()
 )
 
 func main() {
@@ -20,7 +20,7 @@ func getUrls() {
 	headers := make(http.Header)
 	headers.Set("Authorization", "Bearer ABC-123")
 
-	response, err := httpclient.Get("https://api.github.com", headers)
+	response, err := githubHttpClient.Get("https://api.github.com", headers)
 	if err != nil {
 		panic(err)
 	}

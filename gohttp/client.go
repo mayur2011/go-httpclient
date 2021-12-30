@@ -7,7 +7,10 @@ type HttpClient interface {
 	Post(url string, headers http.Header, body interface{}) (*http.Response, error)
 }
 
-type httpClient struct{}
+//common header setup which will always be there besides headers from client request
+type httpClient struct {
+	Headers http.Header
+}
 
 func New() HttpClient {
 	client := &httpClient{}
