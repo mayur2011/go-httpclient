@@ -28,10 +28,7 @@ func main() {
 }
 
 func getUrls() {
-	headers := make(http.Header)
-	headers.Set("Authorization", "Bearer ABC-123")
-
-	response, err := githubHttpClient.Get("https://api.github.com", headers)
+	response, err := githubHttpClient.Get("https://api.github.com", nil)
 	if err != nil {
 		panic(err)
 	}
