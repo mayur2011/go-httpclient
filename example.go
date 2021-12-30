@@ -8,9 +8,20 @@ import (
 	"github.com/mayur2011/go-httpclient/gohttp"
 )
 
+//Singleton http client
 var (
-	githubHttpClient = gohttp.New()
+	githubHttpClient = getGithubClient()
 )
+
+func getGithubClient() gohttp.HttpClient {
+	client := gohttp.New()
+
+	commonHeaders := make(http.Header)
+	commonHeaders.Set("Authorization", "Bearer ABC-123")
+	client.SetHeaders(commonHeaders)
+
+	return client
+}
 
 func main() {
 	getUrls()

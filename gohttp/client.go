@@ -3,6 +3,8 @@ package gohttp
 import "net/http"
 
 type HttpClient interface {
+	SetHeaders(headers http.Header)
+
 	Get(url string, headers http.Header) (*http.Response, error)
 	Post(url string, headers http.Header, body interface{}) (*http.Response, error)
 }
@@ -15,6 +17,10 @@ type httpClient struct {
 func New() HttpClient {
 	client := &httpClient{}
 	return client
+}
+
+func (c *httpClient) SetHeaders(headers http.Header) {
+	c.Headers = headers
 }
 
 func (c *httpClient) Get(url string, headers http.Header) (*http.Response, error) {
