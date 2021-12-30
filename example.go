@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"net/http"
 
 	"github.com/mayur2011/go-httpclient/gohttp"
 )
@@ -16,9 +15,9 @@ var (
 func getGithubClient() gohttp.HttpClient {
 	client := gohttp.New()
 
-	commonHeaders := make(http.Header)
-	commonHeaders.Set("Authorization", "Bearer ABC-123")
-	client.SetHeaders(commonHeaders)
+	// commonHeaders := make(http.Header)
+	// commonHeaders.Set("Authorization", "Bearer ABC-123")
+	// client.SetHeaders(commonHeaders)
 
 	return client
 }
