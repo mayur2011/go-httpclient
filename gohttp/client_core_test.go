@@ -35,3 +35,35 @@ func TestGetRequestHeaders(t *testing.T) {
 		t.Error("invalid x-request-id value")
 	}
 }
+
+func TestGetRequestBodyAsNilBody(t *testing.T) {
+	client := httpClient{}
+	body, err := client.getRequestBody("application/json", nil)
+	if err != nil {
+		t.Error("no error expected with nil body request")
+	}
+
+	if body != nil {
+		t.Error("no error expected with nil body request")
+	}
+}
+func TestGetRequestBodyAsJSON(t *testing.T) {
+	client := httpClient{}
+	requestBody := []string{"first", "last"}
+	body, err := client.getRequestBody("application/json", requestBody)
+
+	if err != nil {
+		t.Error("not expected error with marshaling slice as json")
+	}
+
+	if string(body) != `["first", "last"]` {
+		t.Error("not expected error invalid request body")
+	}
+
+}
+func TestGetRequestBodyAsXML(t *testing.T) {
+
+}
+func TestGetRequestBodyJSONAsDefault(t *testing.T) {
+
+}
